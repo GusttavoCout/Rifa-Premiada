@@ -1,0 +1,68 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Fundo estilizado */
+body {
+    background: linear-gradient(135deg, #FF7E5F, #FEB47B);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilização da seção de vídeos */
+.video-section {
+    margin-bottom: 20px;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Botão do WhatsApp */
+.whatsapp-button {
+    margin: 20px 0;
+}
+
+.whatsapp-button a {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.whatsapp-button a:hover {
+    background-color: #1EBE5D;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .video-container iframe {
+        width: 100%;
+        height: auto;
+    }
+}

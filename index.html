@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Premiada</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background: url('https://source.unsplash.com/1600x400/?abstract') no-repeat center/cover;
+            z-index: -1;
+        }
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #ff8c00, #ff5733);
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-in-out;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        p {
+            font-size: 18px;
+            color: #ddd;
+        }
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        iframe {
+            width: 80%;
+            max-width: 560px;
+            height: 315px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .whatsapp-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 15px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .winners-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .winner-video {
+            width: 30%;
+            min-width: 300px;
+        }
+        @media (max-width: 768px) {
+            .winner-video {
+                width: 100%;
+            }
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            color: #000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .notification img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            animation: bellRing 1s infinite alternate;
+        }
+        @keyframes bellRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(15deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        🏆 Participe da Nossa Rifa e Ganhe Prêmios! 🎉
+    </h1>
+    <p>Acompanhe os sorteios e veja quem já ganhou!</p>
+    
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/-ff0lXpkfsU?si=uHwvLZu2IAFNf6PT" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <a class="whatsapp-button" href="https://chat.whatsapp.com/JHymelaqAMTF42V8r890ei" target="_blank">Entre no grupo da rifa</a>
+    
+    <div class="winners-container">
+        <div class="winner-video">
+            <iframe src="https://www.youtube.com/embed/UWjLus7R_sw?si=uIMJILBMvKb-4iKl" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="winner-video">
+            <iframe src="https://www.youtube.com/embed/VIDEO_GANHADOR_2" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="winner-video">
+            <iframe src="https://www.youtube.com/embed/VIDEO_GANHADOR_3" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+  
+    <div class="notification" id="notification">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Sino de Notificação">
+        <span id="notificationText">💬 Alguém acabou de entrar no grupo!</span>
+    </div>
+    
+    <audio id="notificationSound" src="https://www.myinstants.com/media/sounds/tiny-button-push.mp3"></audio>
+    
+    <script>
+        const names = ["João", "Maria", "Carlos", "Ana", "Pedro", "Fernanda"];
+        
+        function showNotification() {
+            const notification = document.getElementById("notification");
+            const notificationText = document.getElementById("notificationText");
+            const sound = document.getElementById("notificationSound");
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            
+            notificationText.textContent = `🔔 ${randomName} entrou no grupo!`;
+            notification.style.opacity = "1";
+            notification.style.transform = "scale(1)";
+            sound.play();
+            
+            setTimeout(() => {
+                notification.style.opacity = "0";
+                notification.style.transform = "scale(0.8)";
+            }, 5000);
+        }
+        
+        function simulateNewMember() {
+            setInterval(() => {
+                if (Math.random() > 0.5) {
+                    showNotification();
+                }
+            }, 7000);
+        }
+        
+        window.onload = function() {
+            simulateNewMember();
+        };
+    </script>
+</body>
+</html>
