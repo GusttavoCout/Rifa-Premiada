@@ -325,33 +325,40 @@ h1 {
     animation: none; /* Remove qualquer animação */
 }
 
-/* Estilo do popup */
+/* Notificação temporária */
 .notification {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background: #007BFF !important;
+    background: #25D366; /* Verde do WhatsApp */
     padding: 15px 20px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     font-size: 16px;
-    color: #fff !important;
+    color: white;
     font-weight: bold;
     display: flex;
     align-items: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    z-index: 1000;
+    gap: 10px;
+    z-index: 1000; /* Garante que a notificação fique acima de outros elementos */
+    opacity: 0; /* Inicialmente invisível */
+    transform: translateY(20px); /* Inicialmente deslocada para baixo */
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Estilo do ícone do sino */
+.notification.show {
+    opacity: 1; /* Torna a notificação visível */
+    transform: translateY(0); /* Retorna à posição original */
+}
+
 .bell-icon img {
     width: 24px;
     height: 24px;
-    margin-right: 10px;
-    animation: bellRing 1s infinite alternate;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1); /* Ícone branco */
+}
+
+.notification-content {
+    font-size: 16px;
 }
 
 .scroll-indicator {

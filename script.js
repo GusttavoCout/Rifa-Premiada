@@ -1,49 +1,40 @@
+// Função para buscar o tempo final do sorteio da API
+async function fetchEndTime() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/GusttavoCout/Rifa-Premiada/refs/heads/main/sorteio.json?v=' + Date.now());
+        const data = await response.json();
+        return new Date(data.endTime).getTime(); // Converte para timestamp
+    } catch (error) {
+        console.error('Erro ao buscar o tempo final do sorteio:', error);
+        return null;
+    }
+}
+
 // Função para iniciar o timer
 function startTimer(endTime) {
-    const timer = setInterval(() => {
+    function updateTimer() {
         const now = new Date().getTime();
         const timeLeft = endTime - now;
 
-        // Se o tempo acabar, pare o timer
         if (timeLeft <= 0) {
-            clearInterval(timer);
             document.getElementById("timer").innerHTML = "🎉 O sorteio começou!";
-            localStorage.removeItem("endTime"); // Remove o tempo salvo
             return;
         }
 
-        // Calcula dias, horas, minutos e segundos
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        // Atualiza o timer na tela
         document.getElementById("days").textContent = String(days).padStart(2, "0");
         document.getElementById("hours").textContent = String(hours).padStart(2, "0");
         document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
         document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
 
-        // Salva o tempo restante no localStorage
-        localStorage.setItem("endTime", endTime);
-    }, 1000);
-}
+        requestAnimationFrame(updateTimer);
+    }
 
-// Notificações
-function simulateNewMember() {
-    const notification = document.getElementById("notification");
-    const notificationSound = document.getElementById("notificationSound");
-
-    setTimeout(() => {
-        notification.style.opacity = "1";
-        notification.style.transform = "scale(1)";
-        notificationSound.play();
-    }, 5000);
-
-    setTimeout(() => {
-        notification.style.opacity = "0";
-        notification.style.transform = "scale(0.8)";
-    }, 10000);
+    updateTimer();
 }
 
 // Configuração do Instagram
@@ -109,15 +100,12 @@ function triggerConfetti() {
 }
 
 // Inicialização
-function initialize() {
+async function initialize() {
     // Timer
-    let endTime = localStorage.getItem("endTime");
+    let endTime = await fetchEndTime(); // Busca o tempo final do sorteio online
 
-    if (endTime) {
-        // Se houver, usa o tempo salvo
-        endTime = parseInt(endTime);
-    } else {
-        // Se não houver, define um novo tempo (6 dias, 4 horas e 20 minutos)
+    if (!endTime) {
+        // Se não conseguir buscar o tempo final, define um tempo padrão (6 dias, 4 horas e 20 minutos)
         const dias = 6;
         const horas = 4;
         const minutos = 20;
@@ -127,9 +115,6 @@ function initialize() {
     }
 
     startTimer(endTime);
-
-    // Notificações
-    simulateNewMember();
 
     // Instagram
     setupInstagramButton();
@@ -145,38 +130,48 @@ function initialize() {
     triggerMoneyRain();
 }
 
-// Lista de nomes fictícios para simulação
-const names = [
-    "João Silva", "Maria Souza", "Carlos Oliveira", "Ana Costa", "Pedro Santos",
-    "Lucas Pereira", "Fernanda Lima", "Rafael Almeida", "Juliana Ribeiro", "Gabriel Martins"
-];
+async function fetchRandomBrazilianName() {
+    try {
+        // Usamos o parâmetro "nat=br" para gerar apenas usuários brasileiros
+        const response = await fetch('https://randomuser.me/api/?nat=br');
+        const data = await response.json();
+        const user = data.results[0];
+        return `${user.name.first} ${user.name.last}`;
+    } catch (error) {
+        console.error('Erro ao buscar nome:', error);
+        return "Novo Membro"; // Fallback caso a API falhe
+    }
+}
 
 // Função para simular a entrada de novos membros
-function simulateNewMember() {
+async function simulateNewMember() {
     const notification = document.getElementById("notification");
     const notificationText = document.getElementById("notificationText");
     const notificationSound = document.getElementById("notificationSound");
 
-    // Escolhe um nome aleatório da lista
-    const randomName = names[Math.floor(Math.random() * names.length)];
+    // Busca um nome brasileiro aleatório da API
+    const randomName = await fetchRandomBrazilianName();
 
-    // Atualiza o texto do popup
-    notificationText.textContent = ` ${randomName} acabou de entrar no grupo!`;
+    // Atualiza o texto da notificação
+    notificationText.textContent = `${randomName} entrou no grupo!`;
 
-    // Mostra o popup
+    // Mostra a notificação
     notification.style.opacity = "1";
     notification.style.transform = "scale(1)";
     notificationSound.play();
 
-    // Esconde o popup após alguns segundos
+    // Esconde a notificação após 5 segundos
     setTimeout(() => {
         notification.style.opacity = "0";
         notification.style.transform = "scale(0.8)";
-    }, 10000); // 10 segundos
+    }, 5000);
+
+    // Agenda a próxima notificação após 15 segundos
+    setTimeout(simulateNewMember, 20000);
 }
 
-// Simula a entrada de novos membros a cada 5 segundos (para teste)
-setInterval(simulateNewMember, 5000);
+// Inicia a primeira notificação após 10 segundos
+setTimeout(simulateNewMember, 10000);
 
 // Inicia tudo quando a página carregar
 window.onload = initialize;
@@ -249,7 +244,6 @@ particlesJS("particles-js", {
     },
     retina_detect: true,
 });
-
 
 // Garante que a página não role além do conteúdo
 window.addEventListener('scroll', function () {
