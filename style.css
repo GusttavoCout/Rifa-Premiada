@@ -6,12 +6,14 @@
     font-family: Arial, sans-serif;
 }
 
-/* Fundo estilizado */
-body {
-    background: linear-gradient(135deg, #FF7E5F, #FEB47B);
-    color: white;
-    text-align: center;
-    padding: 20px;
+/* Melhorando a acessibilidade */
+.whatsapp-button a, .social-button {
+    cursor: pointer;
+    outline: none;
+}
+
+.whatsapp-button a:focus, .social-button:focus {
+    outline: 2px solid white;
 }
 
 /* Cabeçalho */
@@ -22,7 +24,7 @@ header {
 h1 {
     font-size: 28px;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 /* Estilização da seção de vídeos */
@@ -35,6 +37,29 @@ h1 {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+}
+
+.winners-title {
+    font-size: clamp(25px, 5vw, 40px); /* Fonte responsiva */
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+    margin: 20px auto;
+    display: inline-block;
+    white-space: nowrap; /* Evita quebra de linha */
+    max-width: 100%; /* Limita a largura máxima */
+    overflow: hidden; /* Impede que o texto ultrapasse os limites */
+
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Botão do WhatsApp */
@@ -65,4 +90,329 @@ h1 {
         width: 100%;
         height: auto;
     }
+}
+
+/* Estilo do contêiner do timer */
+.timer-container {
+    margin: 20px 0;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.timer-container h2 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo do timer */
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff3300;
+    background: #292929; /* Cor sólida (ajuste conforme o tema da página) */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+    max-width: 600px; /* Largura máxima do timer */
+    width: 90%; /* Ocupa 90% da largura disponível */
+    margin: 0 auto; /* Centraliza o timer */
+}
+
+/* Estilo de cada item do timer */
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Estilo dos números */
+.timer-item span:first-child {
+    font-size: 36px;
+    color: #ff8c00;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+/* Estilo das labels */
+.timer-label {
+    font-size: 16px;
+    color: white;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+#timer span {
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.social-share {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.social-button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+.social-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
+}
+
+.instagram {
+    background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45);
+}
+
+/* Estilo para o fundo do vídeo principal */
+.video-background {
+    background: linear-gradient(135deg, #000000, #3d3d3d);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.158);
+    margin: 20px auto;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Para garantir que as partículas não ultrapassem o contêiner */
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Coloca as partículas atrás do vídeo */
+}
+
+/* Efeito de sobreposição */
+.video-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgb(54, 54, 54), rgba(104, 104, 104, 0.322));
+    border-radius: 12px;
+    z-index: 0;
+}
+
+/* Estilo para o container do vídeo */
+.video-container {
+    position: relative;
+    z-index: 2; /* Iframe do vídeo na frente dos trevos */
+}
+
+/* Ajustes no iframe do vídeo principal */
+.video-container iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgb(255, 255, 255);
+}
+
+/* Estilo para o fundo dos vídeos dos vencedores */
+.winner-video-background {
+    background: linear-gradient(135deg, #ff5e00, #00f7ffa8);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+    width: 100%;
+    max-width: 400px; /* Largura máxima para cada vídeo */
+}
+
+/* Ajustes no iframe dos vídeos dos vencedores */
+.winner-video iframe {
+    width: 100%;
+    height: 225px; /* Altura fixa do vídeo */
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilo para o iframe dos Shorts */
+.winner-video iframe {
+    width: 100%;
+    height: 500px; /* Altura maior para vídeos verticais */
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Layout responsivo para os vídeos dos vencedores */
+.winners-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os vídeos */
+    margin-top: 20px;
+    max-width: 1200px; /* Largura máxima do contêiner dos vencedores */
+    margin: 20px auto; /* Centraliza o contêiner */
+}
+
+/* Ajustes para telas grandes */
+@media (min-width: 768px) {
+    .winner-video-background {
+        max-width: 30%; /* Ajusta a largura dos vídeos dos vencedores em telas grandes */
+    }
+}
+
+/* Container dos trevos */
+.clover-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Trevos atrás de todo o conteúdo */
+    pointer-events: none;
+}
+
+/* Estilo base para os trevos */
+.clover {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.5; /* Aumentei a opacidade para facilitar a visualização */
+}
+
+/* Posições individuais para cada trevo */
+.clover-1 { top: 5%; left: 1%; }
+.clover-2 { top: 5%; left: 20%; }
+.clover-3 { top: 5%; left: 50%; }
+.clover-4 { top: 5%; left: 75%; }
+.clover-5 { top: 5%; left: 95%; }
+
+.clover-6 { top: 20%; left: 10%; }
+.clover-7 { top: 20%; left: 35%; }
+.clover-8 { top: 20%; left: 60%; }
+.clover-9 { top: 20%; left: 85%; }
+
+.clover-10 { top: 40%; left: 1%; }
+.clover-11 { top: 40%; left: 30%; }
+.clover-12 { top: 40%; left: 55%; }
+.clover-13 { top: 40%; left: 80%; }
+.clover-14 { top: 40%; left: 95%; }
+
+.clover-15 { top: 60%; left: 10%; }
+.clover-16 { top: 60%; left: 35%; }
+.clover-17 { top: 60%; left: 60%; }
+.clover-18 { top: 60%; left: 85%; }
+
+.clover-19 { top: 80%; left: 1%; }
+.clover-20 { top: 80%; left: 95%; }
+
+/* Remova as animações dos trevos */
+.clover-1, .clover-2, .clover-3, .clover-4, .clover-5, .clover-6 {
+    animation: none; /* Remove qualquer animação */
+}
+
+/* Estilo do popup */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #007BFF !important;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    color: #fff !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    z-index: 1000;
+}
+
+/* Estilo do ícone do sino */
+.bell-icon img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    animation: bellRing 1s infinite alternate;
+    filter: brightness(0) invert(1);
+}
+
+.scroll-indicator {
+    text-align: center; /* Centraliza as setas */
+    margin: 20px 0; /* Espaçamento acima e abaixo */
+    animation: bounce 2s infinite; /* Animação de "quicar" */
+}
+
+.scroll-indicator i {
+    font-size: 50px; /* Tamanho das setas */
+    color: #ff9100; /* Cor das setas */
+    margin: 0 5px; /* Espaçamento entre as setas */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0); /* Posição inicial */
+    }
+    40% {
+        transform: translateY(-10px); /* Sobe um pouco */
+    }
+    60% {
+        transform: translateY(-5px); /* Sobe menos */
+    }
+}
+
+.button-group {
+    background: linear-gradient(135deg, rgb(54, 54, 54), rgba(104, 104, 104, 0.322));
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.158);
+    margin: 20px auto;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.whatsapp-button {
+    margin: 0;
+}
+
+.social-share {
+    margin: 0;
+}
+
+.footer-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0; /* Remove margens */
+    padding: 0; /* Remove padding */
+    position: relative; /* Garante que o contêiner esteja posicionado corretamente */
+    z-index: 1; /* Coloca a imagem na frente do fundo */
+}
+
+.footer-image img {
+    width: 100%; /* Largura da imagem em telas grandes */
+    max-width: 600px; /* Largura máxima da imagem em telas menores */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaços indesejados abaixo da imagem */
 }

@@ -4,26 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rifa Premiada</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
+        /* Mantenha o CSS interno específico para o HTML aqui */
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            background: linear-gradient(135deg, #3a3a3a, #000000);
+            background-attachment: fixed;
+            background-size: cover;
             margin: 0;
             padding: 20px;
             color: #fff;
             position: relative;
+            min-height: 100vh;
+            overflow-y: auto; /* Permite scroll vertical apenas no body */
+            -webkit-overflow-scrolling: touch; /* Melhora a rolagem no iOS */
         }
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 250px;
-            background: url('https://source.unsplash.com/1600x400/?abstract') no-repeat center/cover;
-            z-index: -1;
-        }
+        
         h1 {
             font-size: 30px;
             font-weight: bold;
@@ -32,7 +33,7 @@
             padding: 20px;
             border-radius: 12px;
             display: inline-block;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
             animation: fadeInDown 1s ease-in-out;
         }
         @keyframes fadeInDown {
@@ -61,7 +62,7 @@
             display: inline-block;
             margin: 20px 0;
             padding: 15px 25px;
-            font-size: 18px;
+            font-size: 25px;
             font-weight: bold;
             color: white;
             background: linear-gradient(135deg, #25D366, #128C7E);
@@ -69,119 +70,137 @@
             border-radius: 50px;
             text-decoration: none;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
         }
         .whatsapp-button:hover {
             transform: scale(1.05);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
         }
         .winners-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 20px; /* Espaçamento entre os shorts */
             margin-top: 20px;
+            max-width: 1200px; /* Largura máxima do contêiner dos shorts */
+            margin: 0 auto; /* Centraliza o contêiner */
         }
-        .winner-video {
-            width: 30%;
-            min-width: 300px;
-        }
-        @media (max-width: 768px) {
-            .winner-video {
-                width: 100%;
+        
+        @media (min-width: 768px) {
+            .winner-video-background {
+                max-width: 45%; /* Ajusta a largura dos shorts em telas grandes */
             }
         }
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #fff;
-            padding: 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-            font-size: 16px;
-            color: #000;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .notification img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            animation: bellRing 1s infinite alternate;
-        }
-        @keyframes bellRing {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(15deg); }
+        @media (max-width: 768px) {
+            .winner-video-background {
+                max-width: 100%; /* Os shorts ocupam 100% da largura em telas pequenas */
+            }
         }
     </style>
 </head>
 <body>
-    <h1>
-        🏆 Participe da Nossa Rifa e Ganhe Prêmios! 🎉
-    </h1>
-    <p>Acompanhe os sorteios e veja quem já ganhou!</p>
-    
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/-ff0lXpkfsU?si=uHwvLZu2IAFNf6PT" frameborder="0" allowfullscreen></iframe>
+    <h1>🏆 Participe da Rifa do Tio Renato 🎉</h1>
+    <div class="timer-container">
+        <h2>⏳ Tempo restante para o sorteio acontecer:</h2>
+        <div id="timer">
+            <div class="timer-item">
+                <span id="days">00</span>
+                <span class="timer-label">dias</span>
+            </div>
+            <div class="timer-item">
+                <span id="hours">00</span>
+                <span class="timer-label">horas</span>
+            </div>
+            <div class="timer-item">
+                <span id="minutes">00</span>
+                <span class="timer-label">min</span>
+            </div>
+            <div class="timer-item">
+                <span id="seconds">00</span>
+                <span class="timer-label">seg</span>
+            </div>
+        </div>
     </div>
+
+    <!-- Trevos como marca d'água -->
+    <div class="clover-container">
+        <img src="images/clover.png" alt="Trevo 1" class="clover clover-1">
+        <img src="images/clover.png" alt="Trevo 2" class="clover clover-2">
+        <img src="images/clover.png" alt="Trevo 3" class="clover clover-3">
+        <img src="images/clover.png" alt="Trevo 4" class="clover clover-4">
+        <img src="images/clover.png" alt="Trevo 5" class="clover clover-5">
+        <img src="images/clover.png" alt="Trevo 6" class="clover clover-6">
+        <img src="images/clover.png" alt="Trevo 7" class="clover clover-7">
+        <img src="images/clover.png" alt="Trevo 8" class="clover clover-8">
+        <img src="images/clover.png" alt="Trevo 9" class="clover clover-9">
+        <img src="images/clover.png" alt="Trevo 10" class="clover clover-10">
+        <img src="images/clover.png" alt="Trevo 11" class="clover clover-11">
+        <img src="images/clover.png" alt="Trevo 12" class="clover clover-12">
+        <img src="images/clover.png" alt="Trevo 13" class="clover clover-13">
+        <img src="images/clover.png" alt="Trevo 14" class="clover clover-14">
+        <img src="images/clover.png" alt="Trevo 15" class="clover clover-15">
+        <img src="images/clover.png" alt="Trevo 16" class="clover clover-16">
+        <img src="images/clover.png" alt="Trevo 17" class="clover clover-17">
+        <img src="images/clover.png" alt="Trevo 18" class="clover clover-18">
+        <img src="images/clover.png" alt="Trevo 19" class="clover clover-19">
+        <img src="images/clover.png" alt="Trevo 20" class="clover clover-20">
+    </div>
+
+    <!-- Vídeo principal -->
+    <div class="video-background">
+        <div id="particles-js"></div> <!-- Contêiner das partículas -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/PgF08Wimbfg?si=lo-zMpjzpchRope5" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <!-- Botão do WhatsApp -->
+        <a class="whatsapp-button" href="https://chat.whatsapp.com/JHymelaqAMTF42V8r890ei" target="_blank">Entre no grupo da Rifa 🤑</a>
     
-    <a class="whatsapp-button" href="https://chat.whatsapp.com/JHymelaqAMTF42V8r890ei" target="_blank">Entre no grupo da rifa</a>
-    
+        <!-- Botão do Instagram -->
+        <div class="social-share">
+            <a href="#" class="social-button instagram" target="_blank">Instagram do Tio Renato</a>
+        </div>
+    </div>
+
+    <!-- Vídeos dos ganhadores (Shorts) -->
+    <h2 class="winners-title">🎉 VEJA QUEM JÁ GANHOU! 🎉</h2>
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-chevron-down"></i>
+    </div>
     <div class="winners-container">
-        <div class="winner-video">
-            <iframe src="https://www.youtube.com/embed/UWjLus7R_sw?si=uIMJILBMvKb-4iKl" frameborder="0" allowfullscreen></iframe>
+        <div class="winner-video-background">
+            <div class="winner-video">
+                <iframe src="https://www.youtube.com/embed/gWzcWxxIG0U" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-        <div class="winner-video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_GANHADOR_2" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="winner-video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_GANHADOR_3" frameborder="0" allowfullscreen></iframe>
+        <div class="winner-video-background">
+            <div class="winner-video">
+                <iframe src="https://www.youtube.com/embed/Cr2cr50zWts" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
-  
+
+    <!-- Notificação -->
     <div class="notification" id="notification">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Sino de Notificação">
-        <span id="notificationText">💬 Alguém acabou de entrar no grupo!</span>
+        <div class="bell-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Sino de Notificação">
+        </div>
+        <div class="notification-content">
+            <span id="notificationText">Alguém acabou de entrar no grupo!</span>
+        </div>
     </div>
-    
     <audio id="notificationSound" src="https://www.myinstants.com/media/sounds/tiny-button-push.mp3"></audio>
-    
-    <script>
-        const names = ["João", "Maria", "Carlos", "Ana", "Pedro", "Fernanda"];
-        
-        function showNotification() {
-            const notification = document.getElementById("notification");
-            const notificationText = document.getElementById("notificationText");
-            const sound = document.getElementById("notificationSound");
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            
-            notificationText.textContent = `🔔 ${randomName} entrou no grupo!`;
-            notification.style.opacity = "1";
-            notification.style.transform = "scale(1)";
-            sound.play();
-            
-            setTimeout(() => {
-                notification.style.opacity = "0";
-                notification.style.transform = "scale(0.8)";
-            }, 5000);
-        }
-        
-        function simulateNewMember() {
-            setInterval(() => {
-                if (Math.random() > 0.5) {
-                    showNotification();
-                }
-            }, 7000);
-        }
-        
-        window.onload = function() {
-            simulateNewMember();
-        };
-    </script>
+
+ <!-- Imagem do Final da Página -->
+ <div class="footer-image">
+    <img src="images/LOGO.png" alt="Descrição da imagem">
+</div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
