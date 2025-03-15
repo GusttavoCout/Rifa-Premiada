@@ -37,15 +37,9 @@ function startTimer(endTime) {
     updateTimer();
 }
 
-// Configuração do Instagram
+// Configuração do Instagram (função vazia, pois o botão foi removido)
 function setupInstagramButton() {
-    const instagramButton = document.querySelector(".instagram");
-    instagramButton.href = "https://www.instagram.com/tiorenatoaqui/";
-
-    instagramButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.open(instagramButton.href, "_blank");
-    });
+    console.log("Botão do Instagram removido. Nada para configurar.");
 }
 
 // Segurança (bloqueio de botão direito, F12, etc.)
@@ -92,12 +86,25 @@ function setupCloverInteraction() {
 
 // Função para disparar confetes
 function triggerConfetti() {
+    console.log("Disparando confetes...");
+
     confetti({
-        particleCount: 150, // Quantidade de partículas
-        spread: 70, // Quão espalhado o efeito será
-        origin: { y: 0.6 }, // Origem do efeito (parte inferior da tela)
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
     });
+
+    // Verifique se o canvas foi criado
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+        console.log("Canvas encontrado:", canvas);
+    } else {
+        console.error("Canvas não encontrado!");
+    }
 }
+
+// Inicia os confetes automaticamente ao carregar a página
+window.onload = triggerConfetti;
 
 // Inicialização
 async function initialize() {
@@ -127,20 +134,29 @@ async function initialize() {
 
     // Confetes e dinheiro caindo
     triggerConfetti();
-    triggerMoneyRain();
 }
 
-async function fetchRandomBrazilianName() {
-    try {
-        // Usamos o parâmetro "nat=br" para gerar apenas usuários brasileiros
-        const response = await fetch('https://randomuser.me/api/?nat=br');
-        const data = await response.json();
-        const user = data.results[0];
-        return `${user.name.first} ${user.name.last}`;
-    } catch (error) {
-        console.error('Erro ao buscar nome:', error);
-        return "Novo Membro"; // Fallback caso a API falhe
-    }
+// Lista de nomes populares brasileiros (alguns com sobrenome, outros sem)
+const brazilianNames = [
+    "João Silva", "Maria", "Carlos Oliveira", "Ana", "Pedro Santos",
+    "Lucas", "Fernanda Lima", "Rafael", "Juliana Ribeiro", "Gabriel",
+    "Mariana", "Rodrigo Gomes", "Patrícia", "Bruno Carvalho", "Camila",
+    "Gustavo Henrique", "Isabela", "Thiago", "Amanda Costa", "Felipe",
+    "Larissa", "Diego Almeida", "Vanessa", "Ricardo", "Beatriz",
+    "Roberto", "Tatiane", "Leonardo", "Cristiane", "Marcos Fernandes",
+    "Eduardo", "Carolina", "Vinícius", "Daniela", "André",
+    "Tatiana", "Renato", "Priscila", "Fábio", "Simone",
+    "Alexandre", "Márcia", "Paulo", "Cíntia", "Maurício",
+    "Sandra", "Rogério", "Luciana", "Marcelo", "Elaine",
+    "Adriana", "Bruno", "Carla", "Daniel", "Ester",
+    "Rafaela", "José", "Cláudia", "Antônio", "Luiza",
+    "Fábio", "Helena", "Ricardo", "Isabella", "Vitor"
+];
+
+// Função para selecionar um nome aleatório da lista
+function getRandomBrazilianName() {
+    const randomIndex = Math.floor(Math.random() * brazilianNames.length);
+    return brazilianNames[randomIndex];
 }
 
 // Função para simular a entrada de novos membros
@@ -148,17 +164,32 @@ async function simulateNewMember() {
     const notification = document.getElementById("notification");
     const notificationText = document.getElementById("notificationText");
     const notificationSound = document.getElementById("notificationSound");
+    const bellIcon = document.querySelector(".bell-icon");
 
-    // Busca um nome brasileiro aleatório da API
-    const randomName = await fetchRandomBrazilianName();
+    // Busca um nome aleatório da lista
+    const randomName = getRandomBrazilianName();
 
     // Atualiza o texto da notificação
-    notificationText.textContent = `${randomName} entrou no grupo!`;
+    notificationText.textContent = `${randomName} acabou de entrar no grupo!`;
 
     // Mostra a notificação
     notification.style.opacity = "1";
     notification.style.transform = "scale(1)";
     notificationSound.play();
+
+    // Remove a classe de animação (se já estiver aplicada)
+    bellIcon.classList.remove("ring");
+
+    // Força um reflow no navegador (reinicia a animação)
+    void bellIcon.offsetWidth;
+
+    // Adiciona a classe de animação ao sininho
+    bellIcon.classList.add("ring");
+
+    // Remove a classe de animação após o término
+    setTimeout(() => {
+        bellIcon.classList.remove("ring");
+    }, 500); // Tempo da animação (0.5s)
 
     // Esconde a notificação após 5 segundos
     setTimeout(() => {
@@ -166,7 +197,7 @@ async function simulateNewMember() {
         notification.style.transform = "scale(0.8)";
     }, 5000);
 
-    // Agenda a próxima notificação após 15 segundos
+    // Agenda a próxima notificação após 20 segundos
     setTimeout(simulateNewMember, 20000);
 }
 

@@ -67,21 +67,24 @@ h1 {
     margin: 20px 0;
 }
 
-.whatsapp-button a {
+.whatsapp-button {
     display: inline-block;
-    background-color: #25D366;
-    color: white;
-    padding: 15px 25px;
-    font-size: 18px;
+    margin: 20px 0;
+    padding: 25px 50px; /* Aumentei o padding para deixar o botão maior */
+    font-size: 35px; /* Aumentei o tamanho da fonte */
     font-weight: bold;
-    border-radius: 10px;
+    color: white;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border: none;
+    border-radius: 70px; /* Aumentei o border-radius para deixar as bordas mais arredondadas */
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
 
-.whatsapp-button a:hover {
-    background-color: #1EBE5D;
+.whatsapp-button:hover {
     transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Responsividade */
@@ -174,10 +177,6 @@ h1 {
 .social-button:hover {
     transform: scale(1.05);
     box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
-}
-
-.instagram {
-    background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45);
 }
 
 /* Estilo para o fundo do vídeo principal */
@@ -351,6 +350,30 @@ h1 {
     transform: translateY(0); /* Retorna à posição original */
 }
 
+/* Animação do sininho */
+@keyframes bellRing {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+    75% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Classe para aplicar a animação */
+.bell-icon.ring {
+    animation: bellRing 3.0s ease-in-out;
+}
+
 .bell-icon img {
     width: 24px;
     height: 24px;
@@ -423,3 +446,66 @@ h1 {
     height: auto; /* Mantém a proporção da imagem */
     display: block; /* Remove espaços indesejados abaixo da imagem */
 }
+
+/* Animação de piscar mais chamativa */
+@keyframes piscar {
+    0%, 100% {
+        background: linear-gradient(135deg, #25D366, #128C7E); /* Cor normal */
+    }
+    50% {
+        background: linear-gradient(135deg, #00ff88, #00c974); /* Verde bem mais claro e vibrante */
+    }
+}
+
+/* Efeito de brilho nas bordas externas */
+a.whatsapp-button {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 20px 25px; /* Tamanho aumentado */
+    font-size: 25px; /* Fonte maior */
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #25D366, #128C7E); /* Cor normal */
+    border: none;
+    border-radius: 70px; /* Bordas mais arredondadas */
+    text-decoration: none;
+    position: relative; /* Para o pseudo-elemento */
+    overflow: hidden; /* Esconde o que ultrapassar o botão */
+    z-index: 1; /* Garante que o botão fique acima do pseudo-elemento */
+    animation: piscar 1s infinite; /* Animação de piscar */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Sombra inicial */
+}
+
+/* Animação do brilho nas bordas externas */
+@keyframes brilhoBorda {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Sombra inicial */
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Sombra mais intensa */
+    }
+}
+
+/* Aplicando a animação ao botão */
+a.whatsapp-button {
+    animation: piscar 1s infinite, brilhoBorda 2s infinite; /* Combina as animações */
+}
+
+/* Estilo do título do vídeo */
+.video-title {
+    position: absolute; /* Posiciona o título sobre o fundo */
+    top: 5px; /* Distância do topo */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta o centro */
+    font-size: 15px; /* Tamanho da fonte */
+    font-weight: bold; /* Texto em negrito */
+    color: white; /* Cor do texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto */
+    z-index: 1; /* Garante que o título fique atrás do vídeo */
+    background: rgba(0, 0, 0, 0.123); /* Fundo semi-transparente */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+    white-space: nowrap; /* Impede a quebra de linha */
+}
+
