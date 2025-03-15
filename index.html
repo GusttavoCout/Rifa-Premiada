@@ -93,10 +93,11 @@
         }
         
         @media (min-width: 768px) {
-            .winner-video-background {
-                max-width: 45%; /* Ajusta a largura dos shorts em telas grandes */
-            }
-        }
+    .winner-video-background {
+        max-width: 40%; /* Ajusta a largura para caber 4 vídeos na mesma linha */
+        flex: 1 1 23%; /* Garante que os vídeos se ajustem corretamente */
+    }
+}
         @media (max-width: 768px) {
             .winner-video-background {
                 max-width: 100%; /* Os shorts ocupam 100% da largura em telas pequenas */
