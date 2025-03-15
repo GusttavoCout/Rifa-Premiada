@@ -497,7 +497,7 @@ a.whatsapp-button {
     top: 5px; /* Distância do topo */
     left: 50%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta o centro */
-    font-size: 15px; /* Tamanho da fonte */
+    font-size: 14px; /* Tamanho da fonte */
     font-weight: bold; /* Texto em negrito */
     color: white; /* Cor do texto */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto */
