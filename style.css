@@ -489,19 +489,19 @@ body {
 
 /* Efeito de brilho nas bordas externas */
 a.whatsapp-button {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 15px 20px; /* Tamanho aumentado */
     font-size: clamp(25px, 5vw, 40px); /* Fonte responsiva */
     font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #25D366, #128C7E); /* Cor normal */
-    border: none;
-    border-radius: 12px; /* Bordas mais arredondadas */
-    text-decoration: none;
-    position: relative; /* Para o pseudo-elemento */
-    overflow: hidden; /* Esconde o que ultrapassar o botão */
-    z-index: 1; /* Garante que o botão fique acima do pseudo-elemento */
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
+    margin: 20px auto;
+    display: inline-block;
+    white-space: nowrap; /* Evita quebra de linha */
+    max-width: 100%; /* Limita a largura máxima */
+    overflow: hidden; /* Impede que o texto ultrapasse os limites */
     animation: piscar 1s infinite; /* Animação de piscar */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Sombra inicial */
 }
