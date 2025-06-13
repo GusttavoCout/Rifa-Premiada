@@ -502,14 +502,14 @@ body {
 /* Efeito de brilho nas bordas externas */
 a.whatsapp-button {
     display: inline-block;
-    margin: 20px 0;
-    padding: 20px 25px; /* Tamanho aumentado */
-    font-size: 25px; /* Fonte maior */
+    margin: 20px auto;
+    padding: 15px 20px; /* Tamanho aumentado */
+    font-size: clamp(25px, 5vw, 40px); /* Fonte responsiva */
     font-weight: bold;
     color: white;
     background: linear-gradient(135deg, #25D366, #128C7E); /* Cor normal */
     border: none;
-    border-radius: 70px; /* Bordas mais arredondadas */
+    border-radius: 12px; /* Bordas mais arredondadas */
     text-decoration: none;
     position: relative; /* Para o pseudo-elemento */
     overflow: hidden; /* Esconde o que ultrapassar o botão */
