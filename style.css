@@ -466,7 +466,7 @@ a.whatsapp-button {
     font-size: clamp(30px, 5vw, 10px); /* Fonte responsiva */
     font-weight: bold;
     color: #fff;
-    text-align: center;
+    text-align: left;
     background: linear-gradient(135deg, #25D366, #128C7E);
     padding: 15px 20px;
     border-radius: 12px;
