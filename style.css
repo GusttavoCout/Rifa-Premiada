@@ -69,24 +69,9 @@ h1 {
 
 .whatsapp-button {
     /* Mantenha o tamanho gigante */
-    display: inline-block;
-    margin: 30px auto;
-    padding: 30px 80px;
-    font-size: 36px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    border: none;
-    border-radius: 100px;
+
     text-decoration: none;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     transition: all 0.3s;
-    width: auto;
-    line-height: 1;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
 
     /* Restaura as animações originais */
     animation: 
