@@ -405,14 +405,14 @@ body {
 
 .scroll-indicator {
     text-align: center; /* Centraliza as setas */
-    margin: 20px 0; /* Espaçamento acima e abaixo */
+    margin: 5px 0; /* Espaçamento acima e abaixo */
     animation: bounce 2s infinite; /* Animação de "quicar" */
 }
 
 .scroll-indicator i {
-    font-size: 50px; /* Tamanho das setas */
+    font-size: 20px; /* Tamanho das setas */
     color: #ff9100; /* Cor das setas */
-    margin: 0 5px; /* Espaçamento entre as setas */
+    margin: 0 10px; /* Espaçamento entre as setas */
 }
 
 @keyframes bounce {
