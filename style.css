@@ -40,7 +40,7 @@ h1 {
 }
 
 .winners-title {
-    font-size: clamp(25px, 5vw, 40px); /* Fonte responsiva */
+    font-size: clamp(20px, 5vw, 20px); /* Fonte responsiva */
     font-weight: bold;
     color: #fff;
     text-align: center;
