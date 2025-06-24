@@ -4,108 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tio Renato 💰💸</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="style.css?v=1.0.1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Adicione estas linhas para o favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico?v=1.0.1">
     <link rel="icon" type="image/png" href="images/favicon.png?v=1.0.1">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=1.0.1">
     <meta property="og:image" content="https://tiorenato.com/images/favicon.png?v=1.0.1">
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 
-    <script src="script.js?v=1.0.1"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <style>
-        /* Mantenha o CSS interno específico para o HTML aqui */
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #3a3a3a, #000000);
-            background-attachment: fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 20px;
-            color: #fff;
-            position: relative;
-            min-height: 100vh;
-            overflow-y: auto; /* Permite scroll vertical apenas no body */
-            -webkit-overflow-scrolling: touch; /* Melhora a rolagem no iOS */
-        }
-        
-        h1 {
-            font-size: 30px;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(135deg, #ff8c00, #ff5733);
-            padding: 20px;
-            border-radius: 12px;
-            display: inline-block;
-            box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.3);
-            animation: fadeInDown 1s ease-in-out;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        p {
-            font-size: 18px;
-            color: #ddd;
-        }
-        .video-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-            animation: fadeIn 1.2s ease-in-out;
-        }
-        iframe {
-            width: 80%;
-            max-width: 560px;
-            height: 315px;
-            border-radius: 12px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .winners-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px; /* Espaçamento entre os shorts */
-            margin-top: 20px;
-            max-width: 1200px; /* Largura máxima do contêiner dos shorts */
-            margin: 0 auto; /* Centraliza o contêiner */
-        }
-        
-        @media (min-width: 768px) {
-    .winner-video-background {
-        max-width: 40%; /* Ajusta a largura para caber 4 vídeos na mesma linha */
-        flex: 1 1 23%; /* Garante que os vídeos se ajustem corretamente */
-    }
-}
-        @media (max-width: 768px) {
-            .winner-video-background {
-                max-width: 100%; /* Os shorts ocupam 100% da largura em telas pequenas */
-            }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Trevos como marca d'água -->
     <div class="clover-container">
         <img src="images/clover.png" alt="Trevo 1" class="clover clover-1">
         <img src="images/clover.png" alt="Trevo 2" class="clover clover-2">
@@ -129,77 +43,75 @@
         <img src="images/clover.png" alt="Trevo 20" class="clover clover-20">
     </div>
 
-    <!-- Vídeo principal -->
-    <div class="video-background">
-        <div class="video-title">ASSISTA O VÍDEO ATÉ O FINAL</div> <!-- Título adicionado -->
-        <div id="particles-js"></div> <!-- Contêiner das partículas -->
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/fWSAp9kj9C0?si=vV-T9rUTFG2Kqb43" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
+    <div class="main-container">
 
-    <div class="button-group">
-        <!-- Botão do WhatsApp -->
-        <a class="whatsapp-button" href="https://chat.whatsapp.com/KcSYFi9Nl6M8up14n6MeEP" target="_blank">ENTRAR NO GRUPO VIP AGORA🤑</a>
-    </div>
-
-    <!-- Vídeos dos ganhadores (Shorts) -->
-    <h2 class="winners-title">🎉 VEJA QUEM JÁ GANHOU! 🎉</h2>
-    <div class="scroll-indicator">
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-down"></i>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="winners-container">
-        <div class="winner-video-background">
-            <div class="winner-video">
-                <iframe src="https://www.youtube.com/embed/E0wxWFKQ1kE" frameborder="0" allowfullscreen></iframe>
+        <div class="video-background">
+            <div class="video-title">ASSISTA O VÍDEO ATÉ O FINAL</div>
+            <div id="particles-js"></div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fWSAp9kj9C0?si=vV-T9rUTFG2Kqb43" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="winner-video-background">
-            <div class="winner-video">
-                <iframe src="https://www.youtube.com/embed/KmaLqB7xClk" frameborder="0" allowfullscreen></iframe>
+
+        <div class="button-group">
+            <a class="whatsapp-button" href="https://chat.whatsapp.com/KcSYFi9Nl6M8up14n6MeEP" target="_blank">ENTRAR NO GRUPO VIP AGORA🤑</a>
+        </div>
+
+        <h2 class="winners-title">🎉 VEJA QUEM JÁ GANHOU! 🎉</h2>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="winners-container">
+            <div class="winner-video-background">
+                <div class="winner-video">
+                    <iframe src="https://www.youtube.com/embed/E0wxWFKQ1kE" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="winner-video-background">
+                <div class="winner-video">
+                    <iframe src="https://www.youtube.com/embed/KmaLqB7xClk" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="winner-video-background">
+                <div class="winner-video">
+                    <iframe src="https://www.youtube.com/embed/gWzcWxxIG0U" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="winner-video-background">
+                <div class="winner-video">
+                    <iframe src="https://www.youtube.com/embed/Cr2cr50zWts" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="winner-video-background">
+                <div class="winner-video">
+                    <iframe src="https://www.youtube.com/embed/tdQyJkuUmbA?si=knhUrXE7B7mcxGDz" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
-        <div class="winner-video-background">
-            <div class="winner-video">
-                <iframe src="https://www.youtube.com/embed/gWzcWxxIG0U" frameborder="0" allowfullscreen></iframe>
+
+        <div class="notification" id="notification">
+            <div class="bell-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Sino de Notificação">
+            </div>
+            <div class="notification-content">
+                <span id="notificationText">Alguém entrou no grupo!</span>
             </div>
         </div>
-        <div class="winner-video-background">
-            <div class="winner-video">
-                <iframe src="https://www.youtube.com/embed/Cr2cr50zWts" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="winner-video-background">
-            <div class="winner-video">
-                <iframe src="https://www.youtube.com/embed/tdQyJkuUmbA?si=knhUrXE7B7mcxGDz" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
+        <audio id="notificationSound" src="https://www.myinstants.com/media/sounds/tiny-button-push.mp3"></audio>
 
-    <!-- Notificação -->
-    <div class="notification" id="notification">
-        <div class="bell-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Sino de Notificação">
+        <div class="button-group">
+            <a class="whatsapp-button" href="https://chat.whatsapp.com/KcSYFi9Nl6M8up14n6MeEP" target="_blank">ENTRAR NO GRUPO VIP AGORA🤑</a>
         </div>
-        <div class="notification-content">
-            <span id="notificationText">Alguém entrou no grupo!</span>
+
+        <div class="footer-image">
+            <img src="images/LOGO.png" alt="Descrição da imagem">
         </div>
-    </div>
-    <audio id="notificationSound" src="https://www.myinstants.com/media/sounds/tiny-button-push.mp3"></audio>
 
-    <div class="button-group">
-        <!-- Botão do WhatsApp -->
-        <a class="whatsapp-button" href="https://chat.whatsapp.com/KcSYFi9Nl6M8up14n6MeEP" target="_blank">ENTRAR NO GRUPO VIP AGORA🤑</a>
-    </div>
-
- <!-- Imagem do Final da Página -->
- <div class="footer-image">
-    <img src="images/LOGO.png" alt="Descrição da imagem">
-</div>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
+    </div> <script src="script.js?v=1.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
 </body>
 </html>
